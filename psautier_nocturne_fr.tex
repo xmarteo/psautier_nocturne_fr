@@ -1,0 +1,122 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8
+
+\documentclass[11pt, twoside, french]{book}
+
+\input{common_headers}
+
+%% outputs a score with label, indexing, and annotations. no initials if [n] is passed
+\makeatletter
+\renewcommand{\gscore}[5][y]{
+  %% #1 (passed as option) : y = initial, n = no initial
+  %% #2 : name of the score file, should be a code, e.g. Q4F4A3 or 1225N1R1
+  %% #3 : office-part among the values: T, H, A, P, R, I (toni communes, hy., ant., psalmus, resp., invit.)
+  %% #4 : if applicable, a number between 1 and 9 (rank of the ant./resp.) - else: empty
+  %% #5 : the indexed name of the piece
+  
+  %% this prevents page breaks between the phantom section and its label, and the actual score.
+  \needspace{4\baselineskip} 
+  \protected@edef\@currentlabelname{#5}
+  \phantomsection
+  \label{#2}
+  %% we add the office part, and number of that ant. or resp. in the current office, if applicable
+  %% todo : the negative hspace is here because somehow the initial and annotation (first line only) are misaligned by 1mm _with this initial font size_.
+  %% this should probably be fixed in a more elegant way.
+  \greannotation[c]{\hspace{-1.4mm}\hspace{\defaultannotationshift}\officepartannotation{#3}#4}
+  %% if #5 (indexed name) is blank, nothing is indexed.
+  %% this is for pieces that are repetitions of another piece (antiphons after psalms)
+  \ifblank{#5}{}{\index[#3]{#5}}
+  %% if optional arg #1 has been passed as 'n', set no initial
+  \ifx n#1\gresetinitiallines{0}\fi
+  %% the use of a directory called "gabc" is linked
+  %% to the management of gabc files by the website: do not change 
+  %% without also changing the website static files structure
+  \gregorioscore{\subfix{nocturnale-romanum/gabc/#2}}
+  %% if optional arg #1 has been passed as 'n', unset no initial
+  \ifx n#1\gresetinitiallines{1}\fi
+  \vspace{1mm}
+}
+\makeatother
+
+\newcommand{\psaume}[2]{
+	\vspace{0.5\baselineskip}
+	\needspace{5\baselineskip}
+	\phantomsection
+	\label{Psalm#1_#2}
+	\index[P]{#1 (mode #2)}
+	\smalltitle{Psaume #1}
+	\begin{paracols}{2}
+	\begin{itemize}[
+		label=\null, 
+		leftmargin=0pt, 
+		itemindent=0pt, 
+		labelsep=0pt, 
+		labelwidth=0pt, 
+		rightmargin=0pt, 
+		parsep=0pt, 
+		itemsep=0pt]
+	\input{nocturnale-romanum/psalmi/#1_#2.tex}
+	\end{itemize}
+	\switchcolumn
+	\begin{itemize}[
+		label=\null, 
+		leftmargin=0pt, 
+		itemindent=0pt, 
+		labelsep=0pt, 
+		labelwidth=0pt, 
+		rightmargin=0pt, 
+		parsep=0pt, 
+		itemsep=0pt]
+	\input{psaumes_fr/#1.tex}
+	\end{itemize}
+	\end{paracols}
+}
+
+\newcommand{\translation}[1]{
+    \emph{#1}
+}
+
+\begin{document}
+
+\customsubfile{nr01_prolegomena}
+\customsubfile{nr10_tempus_adventus}
+\customsubfile{nr11_tempus_nativitatis}
+\customsubfile{nr12_tempus_post_epiphaniam}
+\customsubfile{nr13_tempus_quadragesimae}
+\customsubfile{nr14_tempus_passionis}
+\customsubfile{nr15_tempus_paschale}
+\customsubfile{nr16_tempus_post_pentecosten}
+\customsubfile{nr17_tempus_augusti_septembri}
+\customsubfile{nr18_tempus_octobri_novembri}
+\customsubfile{nr20_psalterium_ordinarium}
+\customsubfile{nr21_psalterium_hebdomada}
+\customsubfile{nr30_commune_apostolorum}
+\customsubfile{nr31_commune_martyrum}
+\customsubfile{nr32_commune_confessoris}
+\customsubfile{nr33_commune_mulierum}
+\customsubfile{nr34_commune_dedicationis}
+\customsubfile{nr35_commune_bmv}
+\customsubfile{nr36_officium_defunctorum}
+\customsubfile{nr40_sanctorale_januarii}
+\customsubfile{nr41_sanctorale_februarii}
+\customsubfile{nr42_sanctorale_martii}
+\customsubfile{nr43_sanctorale_aprilis}
+\customsubfile{nr44_sanctorale_maii}
+\customsubfile{nr45_sanctorale_junii}
+\customsubfile{nr46_sanctorale_julii}
+\customsubfile{nr47_sanctorale_augusti}
+\customsubfile{nr48_sanctorale_septembris}
+\customsubfile{nr49_sanctorale_octobris}
+\customsubfile{nr50_sanctorale_novembris}
+\customsubfile{nr51_sanctorale_decembris}
+
+\printindex[I]
+\printindex[H]
+\printindex[A]
+\printindex[R]
+\printindex[P]
+\printindex[T]
+\printindex[F]
+
+\end{document}
+

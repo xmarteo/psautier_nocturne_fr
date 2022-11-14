@@ -3,7 +3,10 @@
 
 \documentclass[11pt, twoside, french]{book}
 
-\input{common_headers}
+\input{nocturnale-romanum/common_headers}
+
+\usepackage{paracol}
+\usepackage{alltt}
 
 %% outputs a score with label, indexing, and annotations. no initials if [n] is passed
 \makeatletter
@@ -45,7 +48,7 @@
 	\label{Psalm#1_#2}
 	\index[P]{#1 (mode #2)}
 	\smalltitle{Psaume #1}
-	\begin{paracols}{2}
+	\begin{paracol}{2}
 	\begin{itemize}[
 		label=\null, 
 		leftmargin=0pt, 
@@ -69,7 +72,7 @@
 		itemsep=0pt]
 	\input{psaumes_fr/#1.tex}
 	\end{itemize}
-	\end{paracols}
+	\end{paracol}
 }
 
 \newcommand{\translation}[1]{
@@ -78,37 +81,39 @@
 
 \begin{document}
 
-\customsubfile{nr01_prolegomena}
-\customsubfile{nr10_tempus_adventus}
-\customsubfile{nr11_tempus_nativitatis}
-\customsubfile{nr12_tempus_post_epiphaniam}
-\customsubfile{nr13_tempus_quadragesimae}
-\customsubfile{nr14_tempus_passionis}
-\customsubfile{nr15_tempus_paschale}
-\customsubfile{nr16_tempus_post_pentecosten}
-\customsubfile{nr17_tempus_augusti_septembri}
-\customsubfile{nr18_tempus_octobri_novembri}
-\customsubfile{nr20_psalterium_ordinarium}
-\customsubfile{nr21_psalterium_hebdomada}
-\customsubfile{nr30_commune_apostolorum}
-\customsubfile{nr31_commune_martyrum}
-\customsubfile{nr32_commune_confessoris}
-\customsubfile{nr33_commune_mulierum}
-\customsubfile{nr34_commune_dedicationis}
-\customsubfile{nr35_commune_bmv}
-\customsubfile{nr36_officium_defunctorum}
-\customsubfile{nr40_sanctorale_januarii}
-\customsubfile{nr41_sanctorale_februarii}
-\customsubfile{nr42_sanctorale_martii}
-\customsubfile{nr43_sanctorale_aprilis}
-\customsubfile{nr44_sanctorale_maii}
-\customsubfile{nr45_sanctorale_junii}
-\customsubfile{nr46_sanctorale_julii}
-\customsubfile{nr47_sanctorale_augusti}
-\customsubfile{nr48_sanctorale_septembris}
-\customsubfile{nr49_sanctorale_octobris}
-\customsubfile{nr50_sanctorale_novembris}
-\customsubfile{nr51_sanctorale_decembris}
+\customsubfile{pnfr10_ordinaire_psautier.tex}
+
+%\customsubfile{nr01_prolegomena}
+%\customsubfile{nr10_tempus_adventus}
+%\customsubfile{nr11_tempus_nativitatis}
+%\customsubfile{nr12_tempus_post_epiphaniam}
+%\customsubfile{nr13_tempus_quadragesimae}
+%\customsubfile{nr14_tempus_passionis}
+%\customsubfile{nr15_tempus_paschale}
+%\customsubfile{nr16_tempus_post_pentecosten}
+%\customsubfile{nr17_tempus_augusti_septembri}
+%\customsubfile{nr18_tempus_octobri_novembri}
+%\customsubfile{nr20_psalterium_ordinarium}
+%\customsubfile{nr21_psalterium_hebdomada}
+%\customsubfile{nr30_commune_apostolorum}
+%\customsubfile{nr31_commune_martyrum}
+%\customsubfile{nr32_commune_confessoris}
+%\customsubfile{nr33_commune_mulierum}
+%\customsubfile{nr34_commune_dedicationis}
+%\customsubfile{nr35_commune_bmv}
+%\customsubfile{nr36_officium_defunctorum}
+%\customsubfile{nr40_sanctorale_januarii}
+%\customsubfile{nr41_sanctorale_februarii}
+%\customsubfile{nr42_sanctorale_martii}
+%\customsubfile{nr43_sanctorale_aprilis}
+%\customsubfile{nr44_sanctorale_maii}
+%\customsubfile{nr45_sanctorale_junii}
+%\customsubfile{nr46_sanctorale_julii}
+%\customsubfile{nr47_sanctorale_augusti}
+%\customsubfile{nr48_sanctorale_septembris}
+%\customsubfile{nr49_sanctorale_octobris} 	
+%\customsubfile{nr50_sanctorale_novembris}
+%\customsubfile{nr51_sanctorale_decembris}
 
 \printindex[I]
 \printindex[H]

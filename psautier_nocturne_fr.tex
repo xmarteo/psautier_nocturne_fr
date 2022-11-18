@@ -107,12 +107,16 @@ headsep=3mm,
   \ifx 3#1\intermediatetitle{Troisième nocturne}\fi
 }
 
+% We do not display NABC in this instance. This can be deactivated for NABC to show up.
+\gresetnabc{1}{invisible}
+
 \begin{document}
 
 \twosided[pc]
-\customsubfile{pnfr10_ordinaire_psautier.tex}
+\customsubfile{pnfr01_prolegomena}
+\customsubfile{pnfr10_ordinaire_psautier}
 
-%\customsubfile{nr01_prolegomena}
+
 %\customsubfile{nr10_tempus_adventus}
 %\customsubfile{nr11_tempus_nativitatis}
 %\customsubfile{nr12_tempus_post_epiphaniam}
@@ -143,14 +147,21 @@ headsep=3mm,
 %\customsubfile{nr49_sanctorale_octobris} 	
 %\customsubfile{nr50_sanctorale_novembris}
 %\customsubfile{nr51_sanctorale_decembris}
-\newpage
-\addcontentsline{toc}{chapter}{Index}
-\cprintindex{I}{Index des Invitatoires}
-\cprintindex{H}{Index des Hymnes}
-\cprintindex{A}{Index des Antiennes}
-\cprintindex{T}{Index des Tons communs}
+
+
+%\newpage
+%\addcontentsline{toc}{chapter}{Index}
+%\cprintindex{I}{Index des Invitatoires}
+%\cprintindex{H}{Index des Hymnes}
+%\cprintindex{A}{Index des Antiennes}
+%\cprintindex{T}{Index des Tons communs}
 \renewcommand\contentsname{Table des matières}
+%% This allows printing the TOC starting on a left page
+\makeatletter
+\@openrightfalse
 \tableofcontents
+\@openrighttrue
+\makeatother
 \thispagestyle{empty}
 
 \end{document}
